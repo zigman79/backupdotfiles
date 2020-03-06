@@ -1,0 +1,6 @@
+{
+    "require": {
+        "vlucas/phpdotenv": "^4.1",
+        "sentry/sdk": "2.1.0"
+    }
+}
