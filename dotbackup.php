@@ -48,6 +48,7 @@ foreach (new RecursiveIteratorIterator($it) as $file) {
     }
 }
 chdir($_ENV["DOTENV_DIR"]);
+exec('git pull');
 exec('git add .');
 exec('git commit -m "'.date("y-m-d").'"');
 exec('git push');
