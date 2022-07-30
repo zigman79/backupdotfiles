@@ -8,6 +8,9 @@ Sentry\init(['dsn' => getenv("SENTRY_DSN") ]);
 $dotenv->required('BASE_DIR')->notempty();
 $dotenv->required('DOTENV_DIR')->notempty();
 $dotenv->required('BACKUP_SUBDIR');
+chdir($_ENV["DOTENV_DIR"]);
+exec('git pull');
+
 if (substr($_ENV["BACKUP_SUBDIR"], -1)!="/" && strlen($_ENV["BACKUP_SUBDIR"])!=0) {
     $_ENV["BACKUP_SUBDIR"].="/";
 }
@@ -48,7 +51,6 @@ foreach (new RecursiveIteratorIterator($it) as $file) {
     }
 }
 chdir($_ENV["DOTENV_DIR"]);
-exec('git pull');
 exec('git add .');
 exec('git commit -m "'.date("y-m-d").'"');
 exec('git push');
